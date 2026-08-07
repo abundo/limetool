@@ -16,8 +16,8 @@ type LimeAgreement struct {
 	ID         uint                 `json:"_id"`
 	MonthlyFee int                  `json:"monthly_fee"`
 	OnetimeFee int                  `json:"onetime_fee"`
-	QOS        *LimeAgreementQoS    `json:"qos"`
-	Status     *LimeAgreementStatus `json:"status"`
+	QOS        *LimeAgreementQoS    `json:"qos" gorm:"-"`
+	Status     *LimeAgreementStatus `json:"status" gorm:"-"`
 }
 
 // ----------------------------------------------------------------------------------------

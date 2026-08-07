@@ -53,20 +53,20 @@ type LimeDelivery struct {
 	PowerPlant  bool `json:"power_plant"`
 	Deal        int  `json:"deal"`
 
-	Agreeement       *LimeAgreement      `json:"-"`
+	Agreeement       *LimeAgreement      `json:"-" gorm:"-"`
 	AgreementID      int                 `json:"agreement"`
-	DeliveryPoint    *LimeDeliverypoint  `json:"-"`
+	DeliveryPoint    *LimeDeliverypoint  `json:"-" gorm:"-"`
 	DeliveryPointID  int                 `json:"deliverypoint"`
-	DeliveryPoint2   *LimeDeliverypoint2 `json:"-"`
+	DeliveryPoint2   *LimeDeliverypoint2 `json:"-" gorm:"-"`
 	DeliveryPoint2ID int                 `json:"deliverypoint2"`
-	Product          *LimeProduct        `json:"-"`
+	Product          *LimeProduct        `json:"-" gorm:"-"`
 	ProductID        int                 `json:"product"`
-	Service          *LimeService        `json:"-"`
+	Service          *LimeService        `json:"-" gorm:"-"`
 	ServiceID        int                 `json:"service"`
 
-	DeliveryStatus *LimeDeliveryStatus        `json:"_delivery_status"`
-	Links          map[string]LinkType        `json:"_links"`
-	Embedded       map[string]json.RawMessage `json:"_embedded"`
+	DeliveryStatus *LimeDeliveryStatus        `json:"_delivery_status" gorm:"-"`
+	Links          map[string]LinkType        `json:"_links" gorm:"-"`
+	Embedded       map[string]json.RawMessage `json:"_embedded" gorm:"-"`
 }
 
 type DeliveryObjects struct {

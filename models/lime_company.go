@@ -40,9 +40,9 @@ type LimeCompany struct {
 	NOC_email string
 	NOC_phone string
 
-	Deliveries []LimeDelivery
+	Deliveries []LimeDelivery `gorm:"-"`
 
-	Links map[string]LinkType `json:"_links"`
+	Links map[string]LinkType `json:"_links" gorm:"-"`
 }
 
 type CompanyLimeObjects struct {
