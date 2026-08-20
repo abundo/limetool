@@ -200,6 +200,46 @@ func (lime *Lime) GetDeliveries(company *models.LimeCompany, refresh bool) error
 	return nil
 }
 
+// GetPersons loads the persons related to a company via relation_person.
+// An empty list is success: some companies have no people in Lime.
+func (lime *Lime) GetPersons(company *models.LimeCompany, refresh bool) error {
+	var personsURL string
+	for key, link := range company.Links {
+		if key == "relation_person" {
+			personsURL = link.Href
+		}
+	}
+	if personsURL == "" {
+		return nil
+	}
+
+	for personsURL != "" {
+		bodyBytes, err := lime.limeAPI(personsURL, refresh)
+		if err != nil {
+			return err
+		}
+
+		var personsData models.PersonResponse
+		err = json.Unmarshal(bodyBytes, &personsData)
+		if err != nil {
+			return err
+		}
+
+		for _, p := range personsData.Embedded.Persons {
+			slog.Debug("Person", "name", p.Name, "company", company.Name)
+			company.Persons = append(company.Persons, p)
+		}
+
+		link, ok := personsData.Links["next"]
+		if ok {
+			personsURL = link.Href
+		} else {
+			personsURL = ""
+		}
+	}
+	return nil
+}
+
 // Fetch data from LIME
 // note: Limit in api, companyname is "starts-with"
 // response is list of companies, with their corresponding data

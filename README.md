@@ -2,8 +2,10 @@
 
 A Go library and CLI for communicating with the [Lime CRM](https://www.lime.se/) REST API.
 
-It fetches companies and their deliveries (with embedded product, service,
-agreement and delivery point data) and prints them as JSON.
+It fetches companies, their deliveries (with embedded product, service,
+agreement and delivery point data), and related persons, and prints them as
+JSON. Persons are loaded on demand via `GetPersons` (factum's Lime sync
+does this; `limetool get` currently only pulls companies + deliveries).
 
 ## Usage
 
@@ -12,8 +14,8 @@ Configure the API URL and key in `/etc/limetool/limetool.yaml` (or pass
 
 ```yaml
 lime:
-  apiurl: https://your-instance.lime-crm.com/api/v1
-  apikey: your-api-key
+    apiurl: https://your-instance.lime-crm.com/api/v1
+    apikey: your-api-key
 ```
 
 Then run:

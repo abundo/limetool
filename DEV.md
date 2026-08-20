@@ -25,10 +25,11 @@ Default install location is `/usr/bin`:
 
 ## Project layout
 
-- `limetool.go` — library: `Lime` client, `GetCompanies`/`GetDeliveries`
-  against the Lime CRM REST API.
+- `limetool.go` — library: `Lime` client, `GetCompanies`/`GetDeliveries`/
+  `GetPersons` against the Lime CRM REST API.
 - `models/` — API response and domain types (`LimeCompany`, `LimeDelivery`,
-  `LimeAgreement`, `LimeProduct`, `LimeService`, `LimeDeliverypoint`, ...).
+  `LimePerson`, `LimeAgreement`, `LimeProduct`, `LimeService`,
+  `LimeDeliverypoint`, ...).
 - `cmd/limetool_cli.go` — CLI built with [boa](https://github.com/GiGurra/boa)
   and [cobra](https://github.com/spf13/cobra); subcommands `get` and
   `show-config`.
@@ -40,8 +41,8 @@ overridable with `-f`:
 
 ```yaml
 lime:
-  apiurl: https://your-instance.lime-crm.com/api/v1
-  apikey: your-api-key
+    apiurl: https://your-instance.lime-crm.com/api/v1
+    apikey: your-api-key
 ```
 
 ## Caching

@@ -41,6 +41,7 @@ type LimeCompany struct {
 	NOC_phone string
 
 	Deliveries []LimeDelivery `gorm:"-"`
+	Persons    []LimePerson   `gorm:"-"`
 
 	Links map[string]LinkType `json:"_links" gorm:"-"`
 }
